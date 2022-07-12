@@ -1,0 +1,53 @@
+* {
+	/*border: 1px solid white;*/
+	color: white;
+	font-family: 'Open Sans', sans-serif;
+}
+
+body {
+	background-color: grey;
+}
+
+.title, .display-area, .keypad {
+	margin-bottom: 10px;
+}
+
+.calc-body {
+	/*width: 290px;*/
+	/*border-top: 1px solid white;*/
+}
+
+.title {
+	border: 1px solid white;
+	padding: 8px;
+	font-size: 0.8em;
+	letter-spacing: 1px;
+}
+
+.display-area {
+	/*border: 1px solid white;*/
+	font-size: 1.5em;
+	padding: 10px;
+}
+
+.keypad {
+	/*border: 1px solid white;*/
+	display: inline-grid;
+	grid-template-columns: repeat(4, 1fr);
+	/*grid-template-rows: repeat(6, 1fr);
+*/	gap: 5px;
+	padding: 5px;
+}
+
+.keypad div {
+	border: 1px solid white;
+	padding: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/*font-weight: bold;*/
+	letter-spacing: 0.8px;
+	text-align: center;
+	
+}
+

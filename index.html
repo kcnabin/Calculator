@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="calc-body">
+		<div class="title">
+			Standard Calculator
+		</div>
+		<div class="display-area">
+			display area
+		</div>
+		<div class="keypad">
+			<div class="percent">
+				%
+			</div>
+			<div class="clear-everything">
+				CE
+			</div>
+			<div class="clear">
+				C
+			</div>
+			<div class="delete">
+				DEL
+			</div>
+		
+			<div class="reverse">
+				1/X
+			</div>
+			<div class="square">
+				X^2
+			</div>
+			<div class="square-root">
+				RT
+			</div>
+			<div class="divide">
+				÷
+			</div>
+			<div class="seven">
+				7
+			</div>
+			<div class="eight">
+				8
+			</div>
+			<div class="nine">
+				9
+			</div>
+			<div class="mul">
+				X
+			</div>
+			<div class="four">
+				4
+			</div>
+			<div class="">
+				5
+			</div>
+			<div class="six">
+				6
+			</div>
+			<div class="sub">
+				-
+			</div>
+			<div class="one">
+				1
+			</div>
+			<div class="two">
+				2
+			</div>
+			<div class="three">
+				3
+			</div>
+			<div class="add">
+				+
+			</div>
+			<div class="sign">
+				+ / -
+			</div>
+			<div class="">
+				0
+			</div>
+			<div class="decimal">
+				.
+			</div>
+			<div class="equals">
+				=
+			</div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+		function operate(operator, firstNum, secondNum) {
+			if (operator === "+") return (firstNum + secondNum);
+			else if (operator === "-") return (firstNum - secondNum);
+			else if (operator === "*") return (firstNum * secondNum);
+			else if (operator === "/") return (firstNum / secondNum);
+			else console.log("Invalid operator!")
+		}
+
+		operate("+", 5, 4);
+		operate("*", 5, 4);
+		operate("-", 5, 4);
+		operate("/", 5, 4);
+
+		function hoverEffect(e) {
+			e.target.style.backgroundColor = "black";
+		}
+
+		const keys = document.querySelectorAll(".keypad div");
+		keys.forEach(key => {
+			key.addEventListener("focus", hoverEffect)
+		})
+
+	</script>
+</body>
+</html>
