@@ -16,7 +16,7 @@
 			Standard Calculator
 		</div>
 		<div class="display-area">
-			display area
+			0
 		</div>
 		<div class="keypad">
 			<div class="percent">
@@ -41,55 +41,55 @@
 			<div class="square-root">
 				RT
 			</div>
-			<div class="divide">
+			<div class="divide/">
 				÷
 			</div>
-			<div class="seven">
+			<div class="seven7">
 				7
 			</div>
-			<div class="eight">
+			<div class="eight-8">
 				8
 			</div>
-			<div class="nine">
+			<div class="nine-9">
 				9
 			</div>
-			<div class="mul">
+			<div class="mul*">
 				X
 			</div>
-			<div class="four">
+			<div class="four-4">
 				4
 			</div>
-			<div class="">
+			<div class="five-5">
 				5
 			</div>
-			<div class="six">
+			<div class="six-6">
 				6
 			</div>
-			<div class="sub">
+			<div class="sub-">
 				-
 			</div>
-			<div class="one">
+			<div class="one-1">
 				1
 			</div>
-			<div class="two">
+			<div class="two-2">
 				2
 			</div>
-			<div class="three">
+			<div class="three-3">
 				3
 			</div>
-			<div class="add">
+			<div class="add+">
 				+
 			</div>
 			<div class="sign">
 				+ / -
 			</div>
-			<div class="">
+			<div class="zero-0">
 				0
 			</div>
 			<div class="decimal">
 				.
 			</div>
-			<div class="equals">
+			<div class="equals=">
 				=
 			</div>
 		</div>
@@ -105,19 +105,95 @@
 			else console.log("Invalid operator!")
 		}
 
-		operate("+", 5, 4);
-		operate("*", 5, 4);
-		operate("-", 5, 4);
-		operate("/", 5, 4);
+		const keys = document.querySelectorAll(".keypad div");
+		const displayArea = document.querySelector(".display-area");
+		let oldNum = 0;
+		const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+		const operators = ["+", "-", "*", "/","="];
+		let clickedValues = [];
+		let clickedOperators = [];
+		let valueCount = 0;
+		let operatorCount = 0;
+		let operatorClicked = 0;
+
+		function display(value) {
+			displayArea.textContent = value;
+		}
+
+		keys.forEach(key => {
+			key.addEventListener("mouseover", hoverEffect);
+			key.addEventListener("mouseout", removeHover);
+			key.addEventListener("click", clickAction);
+		});
 
 		function hoverEffect(e) {
 			e.target.style.backgroundColor = "black";
+			console.log();
 		}
 
-		const keys = document.querySelectorAll(".keypad div");
-		keys.forEach(key => {
-			key.addEventListener("focus", hoverEffect)
-		})
+		function removeHover(e) {
+			e.target.style.backgroundColor = "grey";
+		}
+
+		function clickAction(e) {
+			// extracts last character from classname of e.target
+			let contentAll = e.target.classList[0];
+			
+			if (contentAll === "clear") {
+				clearAll();
+				display("cleared");
+			}
+
+			function clearAll() {
+				enteredValue = 0;
+				oldNum = 0;
+				result = 0;
+				clickedValues = [];
+				clickedOperators = [];
+				valueCount = 0;
+				operatorCount = 0;
+			}
+
+			let clickedNum = contentAll[contentAll.length -1];
+
+			// check for operator
+			if (operators.includes(clickedNum)) {
+				console.log("Operators clicked " + clickedNum);
+				operatorClicked++;;
+				if (operatorClicked == 1) {
+					clickedValues[valueCount] = oldNum;
+					clickedOperators[valueCount] = clickedNum;
+					operatorCount++;
+					valueCount++;
+					oldNum = 0;
+				}
+
+				if (operatorCount == 2) {
+					let result = operate(clickedOperators[0], clickedValues[0], clickedValues[1]);
+					display(result);
+					operatorCount = 1;
+					valueCount = 1;
+					clickedValues[0] = result;
+					clickedOperators[0] = clickedNum;
+
+					// check for equals sign
+					if (clickedNum == "=") {
+						clearAll();
+						display(result);
+					}
+				}
+			}
+
+			// checks if clicked content is number
+			// if it is a number display that number
+			if (numbers.includes(clickedNum)) {
+				operatorClicked = 0;
+				console.log(clickedNum);
+				let result = +oldNum * 10 + +clickedNum;
+				oldNum = result;
+				display(oldNum);
+			}
+		}
 
 	</script>
 </body>
