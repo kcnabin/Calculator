@@ -28,12 +28,14 @@ keys.forEach(key => {
 });
 
 function hoverEffect(e) {
-	e.target.style.backgroundColor = "black";
+	e.target.style.backgroundColor = "#d15e7b";
+	e.target.style.border = "1px solid white"
 	console.log();
 }
 
 function removeHover(e) {
-	e.target.style.backgroundColor = "grey";
+	e.target.style.backgroundColor = "#212121";
+	e.target.style.border = "1px solid #212121"
 }
 
 function clickAction(e) {
